@@ -1,11 +1,18 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+
 </script>
 
 <template>
   <div>
-    Hello world !
+    <nav class="fixed top-0 left-0 w-full bg-aqua-200">
+      <button class="m-2">
+        <router-link to="/">Home</router-link>
+      </button>
+      <button class="m-2">
+        <router-link to="/about">About</router-link>
+      </button>
+    </nav>
+    <RouterView />
   </div>
 </template>
 
