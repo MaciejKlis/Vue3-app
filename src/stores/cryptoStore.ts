@@ -1,17 +1,24 @@
-import { ref, computed } from 'vue';
+import { reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
+import { fetchTop100Coins } from '../api/cryptoService'
+import CryptoCoin from '../types/cryptoCoin';
 
 export const useCryptoStore = defineStore('crypto', () => {
     //State 
-    const bitcoinPrice = ref(17300);
+    const cryptoTop100:Array<CryptoCoin> = reactive([])
 
     //Getter
-    const dolarBitcoinPrice = computed(() => bitcoinPrice.value + ' $');
+    const top100 = computed(() => cryptoTop100);
 
     //Action
-    function incrementPrice() {
-        bitcoinPrice.value += 100;
+    async function getTop100Coins() {
+        if(cryptoTop100.length) return
+
+        const data:Array<CryptoCoin> = await fetchTop100Coins();
+        data.forEach(element => {
+            cryptoTop100.push(element)
+        })
     }
 
-    return {dolarBitcoinPrice, incrementPrice};
+    return {top100, getTop100Coins};
 })

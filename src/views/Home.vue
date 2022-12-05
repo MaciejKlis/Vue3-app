@@ -1,27 +1,14 @@
-<script lang="ts">
-import { computed, ref } from 'vue';
+<script setup lang="ts">
 import { useCryptoStore } from '../stores/cryptoStore';
+import Table from '../components/Table.vue'
 
-export default {
-    name: "Home",
-    setup() {
-        const store = useCryptoStore();
+const store = useCryptoStore();
+store.getTop100Coins();
 
-        setInterval(() => {
-            store.incrementPrice();
-        },2000)
-
-        return {
-            dolarBitcoinPrice: computed(() => store.dolarBitcoinPrice),
-            store
-        }
-    },
-}
 </script>
 
 <template>
     <div>
-        <h1> {{dolarBitcoinPrice}} </h1>
-        <button @click="store.incrementPrice">Incremant BTC price</button>
+        <Table :cryptoCoins="store.top100" />
     </div>
 </template>
