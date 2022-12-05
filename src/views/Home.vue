@@ -1,21 +1,19 @@
 <script lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useCryptoStore } from '../stores/cryptoStore';
+
 export default {
     name: "Home",
     setup() {
-        let someVariable = ref('Siemanko');
-        const clikedTimes = ref(0);
-        const h1 = ref(null);
+        const store = useCryptoStore();
 
-        const logH1 = () => {
-            someVariable.value = "siemaa"
-        }
+        setInterval(() => {
+            store.incrementPrice();
+        },2000)
 
         return {
-            someVariable,
-            clikedTimes,
-            h1,
-            logH1
+            dolarBitcoinPrice: computed(() => store.dolarBitcoinPrice),
+            store
         }
     },
 }
@@ -23,8 +21,7 @@ export default {
 
 <template>
     <div>
-        <h1 ref="h1"> Component </h1>
-        <button @click="(someVariable += ' ' + (clikedTimes++))">Click</button>
-        <button @click="logH1">Log h1</button>   
+        <h1> {{dolarBitcoinPrice}} </h1>
+        <button @click="store.incrementPrice">Incremant BTC price</button>
     </div>
 </template>
