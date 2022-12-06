@@ -25,4 +25,5 @@ export default interface CryptoCoin {
     symbol: string;
     total_supply: number;
     total_volume: number;
+    chart?: Array<[number, number]>;
 }

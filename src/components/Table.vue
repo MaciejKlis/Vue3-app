@@ -39,7 +39,9 @@ defineProps<{
             <img class="max-h-5" :src="coin.image" :alt="coin.symbol">
         </td>
         <td>
-            {{ coin.name }}
+            <router-link :to="('/coin/' + coin.id)">
+                {{ coin.name }}
+            </router-link>
         </td>
         <td>
             {{ coin.current_price }} PLN
