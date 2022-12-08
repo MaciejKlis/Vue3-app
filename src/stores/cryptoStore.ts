@@ -9,7 +9,6 @@ export const useCryptoStore = defineStore('crypto', () => {
 
     //Getters
     const top100 = computed(() => cryptoTop100);
-    const getCoinWithId = computed(id => cryptoTop100.find(coin => coin.id === id))
 
     //Actions
     async function getTop100Coins() {
@@ -32,9 +31,8 @@ export const useCryptoStore = defineStore('crypto', () => {
         
         //Get chart
         const chart = await fetchCoinChartData(id);
-        
         coinData.chart = chart;
     }
 
-    return {top100, getCoinWithId, getTop100Coins, getCoinChartData};
+    return {top100, getTop100Coins, getCoinChartData};
 })

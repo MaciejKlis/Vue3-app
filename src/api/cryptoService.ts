@@ -19,11 +19,11 @@ const fetchTop100Coins = async () => {
 const fetchCoinChartData = async (id:string) => {
     const reqParams = {
         method: 'get',
-        url: `${baseUrl}coins/${id}/market_chart?vs_currency=${apiConfig.currency}&days=max`
+        url: `${baseUrl}coins/${id}/market_chart?vs_currency=${apiConfig.currency}&days=1500`
     }
 
     const response = await axios(reqParams);
-    return response.data;
+    return response.data.prices;
 }
 
 export {
