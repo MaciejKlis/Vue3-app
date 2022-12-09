@@ -3,6 +3,7 @@ import CryptoCoin from '../types/cryptoCoin'
 
 defineProps<{
     cryptoCoins: Array<CryptoCoin>
+    headers: Array<string>
 }>()
 </script>
 
@@ -10,26 +11,12 @@ defineProps<{
    <v-table>
     <thead>
       <tr>
-        <th class="text-left">
-            idx
-        </th>
-        <th class="text-left">
-            image
-        </th>
-        <th class="text-left">
-            Name
-        </th>
-        <th class="text-left">
-            Price
-        </th>
-        <th class="text-left">
-            Mrk. cap
-        </th>
-        <th class="text-left">
-            Ath
+        <th class="text-left" v-for="header in headers">
+            {{header}}
         </th>
       </tr>
     </thead>
+    
     <tbody>
       <tr v-for="(coin, idx) in cryptoCoins" :key="idx">
         <td>
